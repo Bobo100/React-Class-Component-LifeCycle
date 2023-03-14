@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import ClassComponentUnmounting from '../components/ClassComponentUnmounting';
+import indexStyle from '../styles/index.module.scss';
+
 export default function Unmounting() {
     const [isMounted, setIsMounted] = useState(false);
 
@@ -9,7 +11,7 @@ export default function Unmounting() {
 
     return (
         <div>
-            <h1>Unmounting</h1>
+            <h1 className={indexStyle.h1}>Unmounting</h1>
             <p>最後是 Unmounting 階段，Unmounting 階段的生命週期函數有以下幾個:</p>
             <ul>
                 <li>componentWillUnmount</li>

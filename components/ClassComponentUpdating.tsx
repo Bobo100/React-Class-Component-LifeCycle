@@ -8,7 +8,7 @@ type State = {
 }
 class ClassComponentUpdating extends React.Component<Props, State> {
     constructor(props: Props) {
-        console.log('constructor');
+        // console.log('constructor');
         super(props);
         this.state = {
             count: 0,
@@ -21,16 +21,26 @@ class ClassComponentUpdating extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        console.log('componentDidMount');
+        // console.log('componentDidMount');
     }
 
     // 更新階段
-    componentShouldUpdatte() {
-        console.log('componentShouldUpdatte');
+    // 由於React v16.3版本中 componentWillUpdate 已經被棄用 所以要改用別的寫法 如下面的 shouldComponentUpdate 和 getSnapshotBeforeUpdate
+    // componentShouldUpdatte() {
+    //     console.log('componentShouldUpdatte');
+    // }
+    // componentWillUpdate() {
+    //     console.log('componentWillUpdate');
+    // }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('componentShouldUpdate');
+        return true; // or false based on comparison of nextProps and this.props and/or nextState and this.state
     }
-    componentWillUpdate() {
-        console.log('componentWillUpdate');
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('getSnapshotBeforeUpdate');
+        return null;
     }
+
     componentDidUpdate() {
         console.log('componentDidUpdate');
     }
