@@ -6,8 +6,89 @@ import Updating from "./Updating";
 import Unmounting from "./Unmounting";
 
 import indexStyle from '../styles/index.module.scss';
+import { useState } from "react";
+import ClassComponentLifeCycle from "../components/ClassComponentLifeCycle";
 
+
+import { Prism } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 function HomePage() {
+    const [isMounted, setIsMounted] = useState(false);
+
+    const handleClick = () => {
+        setIsMounted((prevState) => !prevState);
+    }
+
+    const completeCodeString = `
+// 用來介紹 Class Component Life Cycle 的頁面
+import React from 'react';
+type Props = {
+    title: string;
+}
+type State = {
+    count: number;
+}
+class ClassComponentLifeCycle extends React.Component<Props, State> {
+    // 建構階段
+    constructor(props: Props) {
+        console.log('constructor');
+        super(props);
+        this.state = {
+            count: 0,
+        }
+    }
+    static getDerivedStateFromProps(props: Props, state: State) {
+        console.log('getDerivedStateFromProps');
+        return null;
+    }
+    componentDidMount() {
+        console.log('componentDidMount');
+    }
+
+    // 更新階段
+    // 由於React v16.3版本中 componentWillUpdate 已經被棄用 所以要改用別的寫法 如下面的 shouldComponentUpdate 和 getSnapshotBeforeUpdate
+    // componentShouldUpdatte() {
+    //     console.log('componentShouldUpdatte');
+    // }
+    // componentWillUpdate() {
+    //     console.log('componentWillUpdate');
+    // }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('componentShouldUpdate');
+        return true; // or false based on comparison of nextProps and this.props and/or nextState and this.state
+    }
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('getSnapshotBeforeUpdate');
+        return null;
+    }
+    componentDidUpdate() {
+        console.log('componentDidUpdate');
+    }
+
+    // 卸載階段
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
+
+    // 渲染階段
+    render() {
+        console.log('render');
+        return (
+            <div>
+                <h1>{this.props.title}</h1>
+                <p>Count: {this.state.count}</p>
+                <button onClick={this.handleClick}>Click me</button>
+            </div>
+        );
+    }
+    handleClick = () => {
+        this.setState((prevState) => ({ count: prevState.count + 1 }));
+    }
+}
+
+export default ClassComponentLifeCycle;`;
+
     return (
         <Layout>
             <Head>
@@ -28,11 +109,26 @@ function HomePage() {
             </div>
             <div>
                 <h2>詳細介紹</h2>
-            </div>          
+            </div>
             <Mounting />
             <Updating />
             <Unmounting />
 
+            <h1>下面提供完整的流程與程式碼，讓你可以在控制台看到</h1>
+            <p>點擊button來把ClassComponent渲染/收回到DOM上</p>
+            <button onClick={handleClick}>Click me</button>
+            {isMounted && <ClassComponentLifeCycle title="Class Component Life Cycle" />}
+
+
+            <h1>完整的code</h1>
+            <CopyToClipboard text={completeCodeString}>
+                <button>Copy to clipboard with button</button>
+            </CopyToClipboard>
+            <Prism language="javascript" style={vscDarkPlus}>
+                {completeCodeString}
+            </Prism>
+            
+            <h1>前往Function Component</h1>
             <p>看完了Class Component的生命週期，接下來我們來看看Function Component的生命週期。</p>
             <a href="https://bobo100.github.io/React-Function-Component-LifeCycle/">點我前往 學習 Function Component生命週期</a>
         </Layout>

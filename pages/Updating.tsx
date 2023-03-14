@@ -96,7 +96,10 @@ export default ClassComponentUpdating;`;
             <p>如下面的程式碼：</p>
 
             <Prism language="javascript" style={vscDarkPlus}>
-                {``}
+                {`static getDerivedStateFromProps(props: Props, state: State) {
+    console.log('getDerivedStateFromProps');
+    return null;
+}`}
             </Prism>
 
             <h2>shouldComponentUpdate</h2>
@@ -105,7 +108,10 @@ export default ClassComponentUpdating;`;
             <p>如下面的程式碼：</p>
 
             <Prism language="javascript" style={vscDarkPlus}>
-                {``}
+                {`shouldComponentUpdate(nextProps, nextState) {
+    console.log('componentShouldUpdate');
+    return true; // or false based on comparison of nextProps and this.props and/or nextState and this.state
+}`}
             </Prism>
 
             <h2>render</h2>
@@ -114,7 +120,11 @@ export default ClassComponentUpdating;`;
             <p>如下面的程式碼：</p>
 
             <Prism language="javascript" style={vscDarkPlus}>
-                {``}
+                {`class MyComponent extends React.Component {
+  render() {
+    return <div>Hello, World!</div>;
+  }
+}`}
             </Prism>
 
             <h2>getSnapshotBeforeUpdate</h2>
@@ -123,7 +133,10 @@ export default ClassComponentUpdating;`;
             <p>如下面的程式碼：</p>
 
             <Prism language="javascript" style={vscDarkPlus}>
-                {``}
+                {`getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('getSnapshotBeforeUpdate');
+    return null;
+}`}
             </Prism>
 
             <h2>componentDidUpdate</h2>
@@ -132,7 +145,9 @@ export default ClassComponentUpdating;`;
             <p>如下面的程式碼：</p>
 
             <Prism language="javascript" style={vscDarkPlus}>
-                {``}
+                {`componentDidUpdate() {
+    console.log('componentDidUpdate');
+}`}
             </Prism>
 
             <p>幫你整理一下，只有render階段會導致重新渲染</p>
