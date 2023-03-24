@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -9,10 +13,6 @@ body {
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 .flex {
@@ -33,17 +33,15 @@ code {
 
 .App {
     background-color: #282c34;
-    display: flex;
     font-size: 2vmin;
     color: white;
 }
 
 .container {
     display: flex;
-    align-items: flex-start;
-    box-sizing: border-box;
     flex-direction: column;
-    margin: 20px auto;
+    box-sizing: border-box;
+    // margin: 20px auto;
     max-width: 1440px;
 }
 
@@ -59,4 +57,13 @@ a {
     text-decoration: none;
     border: 1px solid #ffa601;
     padding: 10px;
+}
+
+button {
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+pre > code {
+    font-size: 2.2vw !important;
 }
