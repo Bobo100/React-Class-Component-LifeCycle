@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import ClassComponentMounting from '../components/ClassComponentMounting';
 
-import { Prism } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CopyToClipboard } from '../components/Code/CopyToClipboard';
 import indexStyle from '../styles/index.module.scss';
 
 export default function Mounting() {
@@ -72,7 +70,7 @@ export default ClassComponentMounting;`;
             <p>constructor 的主要用途是用來初始化 state，或者是綁定函數的 this。</p>
             <p>如下面的程式碼：</p>
 
-            <Prism language="typescript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`class MyComponent extends React.Component {
    constructor(props) {
       super(props);
@@ -80,7 +78,7 @@ export default ClassComponentMounting;`;
       this.state = {counter: 0};
    }
 }`}
-            </Prism>
+            </CopyToClipboard>
 
             <p>這個例子中，constructor 會將 state 初始化為 {`{counter: 0}`}。</p>
             <h2>static getDerivedStateFromProps</h2>
@@ -89,13 +87,13 @@ export default ClassComponentMounting;`;
             <p>它會接收兩個參數，第一個參數是 props，第二個參數是 state，並且必須回傳一個物件，這個物件會被合併到 state 中。</p>
             <p>如下面的程式碼：</p>
 
-            <Prism language="typescript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`class MyComponent extends React.Component {
         static getDerivedStateFromProps(props, state) {
         // ...
     }
 }`}
-            </Prism>
+            </CopyToClipboard>
 
             <p>這個例子中，static getDerivedStateFromProps 會將 props 的值合併到 state 中。</p>
             <h2>render</h2>
@@ -103,13 +101,13 @@ export default ClassComponentMounting;`;
             <p>render 的主要用途是用來渲染 component，它會回傳一個 React element，這個 element 會被用來更新 DOM。</p>
             <p>如下面的程式碼：</p>
 
-            <Prism language="typescript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`class MyComponent extends React.Component {
   render() {
     return <div>Hello, World!</div>;
   }
 }`}
-            </Prism>
+            </CopyToClipboard>
 
             <p>這個例子中，render 會回傳一個 div element，裡面的文字是 Hello, World!。</p>
             <h2>componentDidMount</h2>
@@ -117,7 +115,7 @@ export default ClassComponentMounting;`;
             <p>componentDidMount 的主要用途是用來執行一些副作用，例如：發送 AJAX 請求、訂閱事件、設定計時器等等。</p>
             <p>如下面的程式碼：</p>
 
-            <Prism language="typescript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`class MyComponent extends React.Component {
   componentDidMount() {
 // network request/ 真實DOM 操作/ 啟動計時器
@@ -127,7 +125,7 @@ export default ClassComponentMounting;`;
   }
 }
 `}
-            </Prism>
+            </CopyToClipboard>
 
             <h2>那我們來實際看一次吧</h2>
             <p>下面的程式碼是一個 Class Component，它會在建立的時候呼叫 constructor、static getDerivedStateFromProps、render、componentDidMount 這四個函數。</p>
@@ -138,15 +136,15 @@ export default ClassComponentMounting;`;
             {isMounted && <ClassComponentMounting title='ClassComponentMounting' />}
 
             <p>你可以複製下面的程式碼，自己試試看喔
-                &nbsp;
+                {/* &nbsp;
                 <CopyToClipboard text={codeString}>
                     <button>Copy</button>
-                </CopyToClipboard>
+                </CopyToClipboard> */}
             </p>
 
-            <Prism language="typescript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {codeString}
-            </Prism>
+            </CopyToClipboard>
         </div>
     )
 }

@@ -41,8 +41,6 @@ code {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    // margin: 20px auto;
-    max-width: 1440px;
 }
 
 .hightlight {
@@ -64,6 +62,61 @@ button {
     width: fit-content;
 }
 
-pre > code {
-    font-size: 2.2vw !important;
+h2 {
+    font-size: 2em;
+    color: #61dafb;
+    background-color: #0f1114;
+
+    padding: 10px;
+}
+
+//  Copy Button 補充設定
+.relative {
+    position: relative;
+}
+
+.btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.25rem;
+    border: 2px solid #ccc;
+    border-radius: 0.5rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+    z-index: 5;
+
+    color: #fff;
+}
+
+.btn:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    --tw-border-opacity: 1;
+    border-color: rgb(74 222 128 / var(--tw-border-opacity));
+}
+
+.btn:focus,
+.btn:hover {
+    --tw-border-opacity: 1;
+    border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.btn.copied {
+    --tw-text-opacity: 1;
+    color: rgb(74 222 128 / var(--tw-text-opacity));
+    --tw-border-opacity: 1;
+    border-color: rgb(74 222 128 / var(--tw-border-opacity));
+}
+
+svg.text-green-400 {
+    --tw-text-opacity: 1;
+    color: rgb(74 222 128 / var(--tw-text-opacity));
+}
+
+svg.text-gray-300 {
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
 }
