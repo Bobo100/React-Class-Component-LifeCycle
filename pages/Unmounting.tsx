@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Prism } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ClassComponentUnmounting from '../components/ClassComponentUnmounting';
 import indexStyle from '../styles/index.module.scss';
+import { CopyToClipboard } from '../components/Code/CopyToClipboard';
 
 export default function Unmounting() {
     const [isMounted, setIsMounted] = useState(false);
@@ -21,12 +19,12 @@ export default function Unmounting() {
             </ul>
             <p>當一個元件被移除時，會觸發 componentWillUnmount</p>
 
-            <Prism language="javascript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`// 卸載階段
 componentWillUnmount() {
     console.log('componentWillUnmount');
 }`}
-            </Prism>
+            </CopyToClipboard>
 
             <button onClick={handleClick}>{isMounted ? 'Unmount' : 'Mount'} ClassComponentUnmounting</button>
             {isMounted && <ClassComponentUnmounting title="ClassComponentUnmounting" />}

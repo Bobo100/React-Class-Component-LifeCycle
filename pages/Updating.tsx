@@ -1,10 +1,7 @@
-import { Prism } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useState } from 'react';
 import ClassComponentUpdating from '../components/ClassComponentUpdating';
 import indexStyle from '../styles/index.module.scss';
-
+import { CopyToClipboard } from '../components/Code/CopyToClipboard';
 export default function Updating() {
     const [isMounted, setIsMounted] = useState(false);
 
@@ -95,67 +92,67 @@ export default ClassComponentUpdating;`;
             <p>static getDerivedStateFromProps 會在 render 之前被呼叫，所以它不會造成 re-render，但是如果它回傳了一個物件，這個物件會被合併到 state 中，所以會造成 re-render。</p>
             <p>如下面的程式碼：</p>
 
-            <Prism language="javascript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`static getDerivedStateFromProps(props: Props, state: State) {
     console.log('getDerivedStateFromProps');
     return null;
 }`}
-            </Prism>
+            </CopyToClipboard>
 
             <h2>shouldComponentUpdate</h2>
             <p>shouldComponentUpdate 會在每次更新的時候被呼叫，它會接收兩個參數，第一個參數是 nextProps，第二個參數是 nextState，並且需要回傳一個布林值，如果回傳 true，則會繼續更新，如果回傳 false，則不會繼續更新。</p>
             <p>shouldComponentUpdate 會在 render 之前被呼叫，所以它不會造成 re-render，但是如果它回傳了 true，則會繼續更新，所以會造成 re-render。</p>
             <p>如下面的程式碼：</p>
 
-            <Prism language="javascript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`shouldComponentUpdate(nextProps, nextState) {
     console.log('componentShouldUpdate');
     return true; // or false based on comparison of nextProps and this.props and/or nextState and this.state
 }`}
-            </Prism>
+            </CopyToClipboard>
 
             <h2>render</h2>
             <p>render 會在每次更新的時候被呼叫，它會回傳一個 React 元素，這個 React 元素會被 render 到頁面上。</p>
             <p>render 會在 shouldComponentUpdate 之後被呼叫，所以它不會造成 re-render，但是如果它回傳了一個 React 元素，這個 React 元素會被 render 到頁面上，所以會造成 re-render。</p>
             <p>如下面的程式碼：</p>
 
-            <Prism language="javascript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`class MyComponent extends React.Component {
   render() {
     return <div>Hello, World!</div>;
   }
 }`}
-            </Prism>
+            </CopyToClipboard>
 
             <h2>getSnapshotBeforeUpdate</h2>
             <p>getSnapshotBeforeUpdate 會在每次更新的時候被呼叫，它會接收兩個參數，第一個參數是 prevProps，第二個參數是 prevState，並且需要回傳一個物件，這個物件會被傳入 componentDidUpdate 中的 snapshot 參數。</p>
             <p>getSnapshotBeforeUpdate 會在 render 之後被呼叫，所以它不會造成 re-render，但是如果它回傳了一個物件，這個物件會被傳入 componentDidUpdate 中的 snapshot 參數，所以會造成 re-render。</p>
             <p>如下面的程式碼：</p>
 
-            <Prism language="javascript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('getSnapshotBeforeUpdate');
     return null;
 }`}
-            </Prism>
+            </CopyToClipboard>
 
             <h2>componentDidUpdate</h2>
             <p>componentDidUpdate 會在每次更新的時候被呼叫，它會接收三個參數，第一個參數是 prevProps，第二個參數是 prevState，第三個參數是 snapshot。</p>
             <p>componentDidUpdate 會在 getSnapshotBeforeUpdate 之後被呼叫，所以它不會造成 re-render。</p>
             <p>如下面的程式碼：</p>
 
-            <Prism language="javascript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`componentDidUpdate() {
     console.log('componentDidUpdate');
 }`}
-            </Prism>
+            </CopyToClipboard>
 
             <p>幫你整理一下，只有render階段會導致重新渲染</p>
             <p>在 shouldComponentUpdate (以前叫做componentShouldUpdatte) 和 getSnapshotBeforeUpdate （以前叫做 componentWillUpdate） 中返回特定的值可能會觸發重新渲染</p>
 
             <p>例如，在 shouldComponentUpdate 中返回 false 將會阻止組件的重新渲染，而在 getSnapshotBeforeUpdate 中返回非空值將會通知 React 執行更新操作。</p>
 
-            <Prism language="javascript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {`
                  shouldComponentUpdate(nextProps, nextState) {
                     return nextProps.id !== this.props.id;
@@ -164,7 +161,7 @@ export default ClassComponentUpdating;`;
                 getSnapshotBeforeUpdate(prevProps, prevState) {                    
                     return null;
                 }`}
-            </Prism>
+            </CopyToClipboard>
 
 
             <h2>那我們來實際看一次吧!</h2>
@@ -178,15 +175,15 @@ export default ClassComponentUpdating;`;
             <p className='hightlight'>貼心提醒：如果你對觸發順序不清楚，可以回到最上面去看流程的圖片~</p>
 
             <p>你可以複製下面的程式碼，自己試試看喔！
-                &nbsp;
+                {/* &nbsp;
                 <CopyToClipboard text={codeString}>
                     <button>Copy</button>
-                </CopyToClipboard>
+                </CopyToClipboard> */}
             </p>
 
-            <Prism language="typescript" style={vscDarkPlus}>
+            <CopyToClipboard>
                 {codeString}
-            </Prism>
+            </CopyToClipboard>
 
 
         </div>

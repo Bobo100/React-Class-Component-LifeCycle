@@ -9,10 +9,7 @@ import indexStyle from '../styles/index.module.scss';
 import { useState } from "react";
 import ClassComponentLifeCycle from "../components/ClassComponentLifeCycle";
 
-
-import { Prism } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CopyToClipboard } from '../components/Code/CopyToClipboard';
 function HomePage() {
     const [isMounted, setIsMounted] = useState(false);
 
@@ -121,12 +118,12 @@ export default ClassComponentLifeCycle;`;
 
 
             <h1>完整的code</h1>
-            <CopyToClipboard text={completeCodeString}>
+            {/* <CopyToClipboard text={completeCodeString}>
                 <button>Copy to clipboard with button</button>
-            </CopyToClipboard>
-            <Prism language="javascript" style={vscDarkPlus}>
+            </CopyToClipboard> */}
+            <CopyToClipboard>
                 {completeCodeString}
-            </Prism>
+            </CopyToClipboard>
             
             <h1>前往Function Component</h1>
             <p>看完了Class Component的生命週期，接下來我們來看看Function Component的生命週期。</p>
